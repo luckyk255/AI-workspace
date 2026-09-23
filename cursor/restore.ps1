@@ -18,16 +18,14 @@ New-Item $BackupDir -ItemType Directory -Force | Out-Null
 New-Item $CursorUserDir -ItemType Directory -Force | Out-Null
 New-Item $CursorHome -ItemType Directory -Force | Out-Null
 
-foreach ($FileName in @("settings.json", "keybindings.json")) {
-    $CurrentFile = Join-Path $CursorUserDir $FileName
-    if (Test-Path $CurrentFile) {
-        Copy-Item $CurrentFile (Join-Path $BackupDir $FileName) -Force
-    }
+$CurrentKeybindings = Join-Path $CursorUserDir "keybindings.json"
+if (Test-Path $CurrentKeybindings) {
+    Copy-Item $CurrentKeybindings (Join-Path $BackupDir "keybindings.json") -Force
+}
 
-    $SharedFile = Join-Path $PSScriptRoot $FileName
-    if (Test-Path $SharedFile) {
-        Copy-Item $SharedFile $CurrentFile -Force
-    }
+$SharedKeybindings = Join-Path $PSScriptRoot "keybindings.json"
+if (Test-Path $SharedKeybindings) {
+    Copy-Item $SharedKeybindings $CurrentKeybindings -Force
 }
 
 $CurrentSnippets = Join-Path $CursorUserDir "snippets"

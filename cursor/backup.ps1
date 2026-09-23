@@ -11,31 +11,6 @@ if (-not (Test-Path $CursorUserDir)) {
     throw "未找到 Cursor 用户配置目录：$CursorUserDir"
 }
 
-# 这些设置只在本机保存，不写入共享仓库。
-$ExcludedSettings = @(
-    "cursor.openAIBaseURL"
-)
-
-$SettingsSource = Join-Path $CursorUserDir "settings.json"
-$SettingsTarget = Join-Path $PSScriptRoot "settings.json"
-
-if (Test-Path $SettingsSource) {
-    $SettingsContent = [IO.File]::ReadAllText($SettingsSource)
-
-    foreach ($SettingName in $ExcludedSettings) {
-        $EscapedName = [Regex]::Escape($SettingName)
-        $Pattern = '(?m)^\s*"' + $EscapedName + '"\s*:\s*.*(?:\r?\n|$)'
-        $SettingsContent = [Regex]::Replace($SettingsContent, $Pattern, "")
-    }
-
-    $SensitiveKeyPattern = '(?i)"[^"]*(api.?key|token|password|secret|credential)[^"]*"\s*:'
-    if ($SettingsContent -match $SensitiveKeyPattern) {
-        throw "settings.json 中发现疑似敏感配置键，已停止备份。请先人工检查。"
-    }
-
-    [IO.File]::WriteAllText($SettingsTarget, $SettingsContent, $Utf8NoBom)
-}
-
 $KeybindingsSource = Join-Path $CursorUserDir "keybindings.json"
 if (Test-Path $KeybindingsSource) {
     Copy-Item $KeybindingsSource (Join-Path $PSScriptRoot "keybindings.json") -Force

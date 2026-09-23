@@ -12,7 +12,7 @@ Shared personal workflow for Codex. Keep only non-secret, reusable material here
 ## Shared tools
 
 - [Cursor 跨电脑配置](cursor/README.md)
-- [Python 项目 VS Code 模板](templates/vscode-python/README.md)
+- [Cursor 公共 `.vscode` 模板](cursor/README.md)
 - [Task templates](templates/task-prompts.md)
 
 ## Security boundary
