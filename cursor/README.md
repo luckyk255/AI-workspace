@@ -11,6 +11,12 @@
 
 不会同步扩展二进制、缓存、工作区状态、账号登录、令牌或密码。
 
+## 用户配置与项目配置的边界
+
+编辑器外观、自动保存、Markdown 预览、Code Runner 等通用偏好保存在这里的
+`settings.json`。项目的 `.vscode/launch.json`、`.vscode/tasks.json` 以及
+Python 模块名、端口、环境变量等项目配置，应由各项目自己的 Git 仓库同步。
+
 ## 当前电脑更新仓库
 
 关闭 Cursor 后，在 PowerShell 中运行：
