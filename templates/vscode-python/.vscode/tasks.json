@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Python: 当前文件（新终端）",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-u",
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "runOptions": {
+        "instanceLimit": 10
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

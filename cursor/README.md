@@ -16,8 +16,9 @@
 编辑器外观、自动保存、Markdown 预览、Code Runner 等通用偏好保存在这里的
 `settings.json`。项目的 `.vscode/launch.json`、`.vscode/tasks.json` 以及
 Python 模块名、端口、环境变量等项目配置，应由各项目自己的 Git 仓库同步。
-若某个设置已在共享 `settings.json` 中定义，项目 `.vscode/settings.json` 不应重复；
-只有需要覆盖共享值的项目差异才保留在项目中，项目值会优先于用户设置。
+需要一个可复制的项目级 `.vscode` 基线时，使用
+[`templates/vscode-python`](../templates/vscode-python/)；它不是自动继承机制，
+项目复制后自行维护其运行差异。项目设置会优先于用户设置。
 
 ## 当前电脑更新仓库
 
